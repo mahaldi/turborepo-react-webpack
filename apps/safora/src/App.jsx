@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "ui";
+// import { Link } from "ui";
 import './App.css';
 
 function Test() {
@@ -12,13 +12,13 @@ function Test() {
           <div className="Turborepo">Safora Example</div>
         </h1>
         <div>
-          <Link className="App-link" href="https://turbo.build/repo">
+          {/* <Link className="App-link" href="https://turbo.build/repo">
             Turborepo Docs
           </Link>
           <span> | </span>
           <Link className="App-link" href="https://reactjs.org">
             React Docs
-          </Link>
+          </Link> */}
         </div>
       </header>
     </div>

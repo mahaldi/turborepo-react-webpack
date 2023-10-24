@@ -1,11 +1,6 @@
 import * as React from "react";
 
-interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  children: React.ReactNode;
-  href: string;
-}
-
-export function Link(props: LinkProps): JSX.Element {
+export function Link(props) {
   const { children, href, ...rest } = props;
 
   if (rest.target === "_blank") {
