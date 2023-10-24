@@ -19,6 +19,7 @@
     "apps/*",
     "packages/*",
     "container",
-    "safora"
+    "safora",
+    "mea"
   ]
 }
