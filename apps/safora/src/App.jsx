@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "ui";
-import "./App.css";
+import './App.css';
 
-function App(): JSX.Element {
+function Test() {
+  
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="header">
-          Web
-          <div className="Turborepo">Turborepo Example</div>
+          Docs
+          <div className="Turborepo">Safora Example</div>
         </h1>
         <div>
           <Link className="App-link" href="https://turbo.build/repo">
@@ -21,7 +22,7 @@ function App(): JSX.Element {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default Test;
