@@ -25,7 +25,7 @@ const SaforaApp = () => {
 	}, [])
 	return (
 		<div>
-			safora app container
+			SaforaApp
 			<Button>button another dimention</Button>
 			<div ref={ref} />
 		</div>

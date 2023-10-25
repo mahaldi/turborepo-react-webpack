@@ -11,7 +11,7 @@ function Landing() {
       <header className="App-header">
         <h1 className="header">
           Docs
-          <div className="Turborepo">Safora Example asdasd</div>
+          <div className="Turborepo">Safora Example Landing</div>
         </h1>
         <div>
           <Button onClick={test}>Safora dimention</Button>
