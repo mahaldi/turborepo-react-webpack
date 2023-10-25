@@ -1,41 +1,32 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const packageJson = require('../package.json');
+const { merge } = require('webpack-merge')
+const commonConfig = require('./webpack.common')
 
-module.exports = {
+const devConfig = {
 	mode: 'development',
 	output: {
-		publicPath: 'http://localhost:6969/'
+		publicPath: 'http://localhost:8081/'
 	},
 	devServer: {
-		port: 6969
-	},
-	module: {
-		rules: [
-			{
-				test: /\.m?js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-react', '@babel/preset-env'],
-						plugins: ['@babel/plugin-transform-runtime']
-					}
-				}
-			}
-		]
+		port: 8081,
+		historyApiFallback: {
+			index: '/index.html'
+		}
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: './public/index.html'
 		}),
 		new ModuleFederationPlugin({
-			name: 'components',
+			name: 'safora',
 			filename: 'remoteEntry.js',
 			exposes: {
-				'./ComponentsApp': './src/bootstrap'
+				'./Safora': './src/bootstrap'
 			},
 			shared: packageJson.dependencies
 		})
 	]
 }
+module.exports = merge(commonConfig, devConfig)

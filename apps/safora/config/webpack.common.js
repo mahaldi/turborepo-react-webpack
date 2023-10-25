@@ -1,15 +1,6 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
-const packageJson = require('../package.json');
 
 module.exports = {
-	mode: 'development',
-	output: {
-		publicPath: 'http://localhost:6969/'
-	},
-	devServer: {
-		port: 6969
-	},
 	module: {
 		rules: [
 			{
@@ -28,14 +19,6 @@ module.exports = {
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: './public/index.html'
-		}),
-		new ModuleFederationPlugin({
-			name: 'components',
-			filename: 'remoteEntry.js',
-			exposes: {
-				'./ComponentsApp': './src/bootstrap'
-			},
-			shared: packageJson.dependencies
 		})
 	]
 }

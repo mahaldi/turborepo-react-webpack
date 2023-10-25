@@ -1,31 +1,27 @@
-import React from "react";
-// import {Button} from 'components/ComponentsApp'
-// import { Link } from "ui";
-// import './App.css';
-import {Button} from 'components/ComponentsApp'
+import React, {lazy, Suspense } from 'react'
+import { Router, Switch, Route } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 
-function Test() {
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="header">
-          Docs
-          <div className="Turborepo">Container Example test</div>
-        </h1>
-        <div>
-          <Button>button other dimention</Button>
-          {/* <Link className="App-link" href="https://turbo.build/repo">
-            Turborepo Docs
-          </Link>
-          <span> | </span>
-          <Link className="App-link" href="https://reactjs.org">
-            React Docs
-          </Link> */}
-        </div>
-      </header>
-    </div>
+const SaforaLazy = lazy(() => import('./components/SaforaApp'))
+const history = createBrowserHistory()
+
+const App = () => {
+  return(
+    <Router history={history}>
+      <div>
+        <h1>header container here</h1>
+        <Suspense fallback={<div>loading...</div>}>
+          <Switch>
+            <Route path="/mea">
+              <div>mea mea an</div>
+            </Route>
+            <Route path="/">
+              <SaforaLazy />
+            </Route>
+          </Switch>
+        </Suspense>
+      </div>
+    </Router>
   )
 }
-
-export default Test;
+export default App;
