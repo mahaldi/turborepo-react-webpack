@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { mount } from 'safora/Safora'
+import {Button} from 'components/UI'
+
 const SaforaApp = () => {
 	const ref = useRef(null)
 	const history = useHistory()
@@ -24,6 +26,7 @@ const SaforaApp = () => {
 	return (
 		<div>
 			safora app container
+			<Button>button another dimention</Button>
 			<div ref={ref} />
 		</div>
 	)

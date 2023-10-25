@@ -1,4 +1,3 @@
-const HTMLWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const packageJson = require('../package.json');
 const { merge } = require('webpack-merge')
@@ -16,14 +15,14 @@ const devConfig = {
 		}
 	},
 	plugins: [
-		new HTMLWebpackPlugin({
-			template: './public/index.html'
-		}),
 		new ModuleFederationPlugin({
 			name: 'safora',
 			filename: 'remoteEntry.js',
 			exposes: {
 				'./Safora': './src/bootstrap'
+			},
+			remotes: {
+				components: 'components@http://localhost:6969/remoteEntry.js',
 			},
 			shared: packageJson.dependencies
 		})

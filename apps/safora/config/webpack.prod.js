@@ -2,26 +2,27 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const packageJson = require('../package.json');
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common')
+const domain = process.env.PRODUCTION_DOMAIN
 
-const devConfig = {
-	mode: 'development',
+const prodConfig = {
+	mode: 'production',
 	output: {
-		publicPath: 'http://localhost:6969/'
-	},
-	devServer: {
-		port: 6969
+		filename: '[name].[contenthash].js',
+		publicPath: '/safora/latest/'
 	},
 	plugins: [
 		new ModuleFederationPlugin({
-			name: 'components',
+			name: 'safora',
 			filename: 'remoteEntry.js',
 			exposes: {
-				'./UI': './src/bootstrap',
-				'./Utils': './src/utils'
+				'./Safora': './src/bootstrap'
+			},
+			remotes: {
+				components: `components@${domain}/components/latest/remoteEntry.js`,
 			},
 			shared: packageJson.dependencies
 		})
 	]
 }
 
-module.exports = merge(commonConfig, devConfig)
+module.exports = merge(commonConfig, prodConfig)

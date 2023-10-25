@@ -3,13 +3,11 @@ const packageJson = require('../package.json');
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common')
 
-const devConfig = {
-	mode: 'development',
+const prodConfig = {
+	mode: 'production',
 	output: {
-		publicPath: 'http://localhost:6969/'
-	},
-	devServer: {
-		port: 6969
+		filename: '[name].[contenthash].js',
+		publicPath: '/components/latest/'
 	},
 	plugins: [
 		new ModuleFederationPlugin({
@@ -24,4 +22,4 @@ const devConfig = {
 	]
 }
 
-module.exports = merge(commonConfig, devConfig)
+module.exports = merge(commonConfig, prodConfig)
