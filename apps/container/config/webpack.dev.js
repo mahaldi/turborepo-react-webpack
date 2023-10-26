@@ -20,7 +20,7 @@ const devConfig = {
 				remotes: {
 						components: 'components@http://localhost:6969/remoteEntry.js',
 						safora: 'safora@http://localhost:8081/remoteEntry.js',
-						// mea: 'mea@http://localhost:8082/remoteEntry.js'
+						mea: 'mea@http://localhost:8082/remoteEntry.js'
 				},
 				shared: packageJson.dependencies
 		}),

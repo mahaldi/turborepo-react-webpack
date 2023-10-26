@@ -3,6 +3,7 @@ import { Router, Switch, Route } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
 const SaforaLazy = lazy(() => import('./components/SaforaApp'))
+const MeaLazy = lazy(() => import('./components/MeaApp'))
 const history = createBrowserHistory()
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         <Suspense fallback={<div>loading...</div>}>
           <Switch>
             <Route path="/mea">
-              <div>mea mea an</div>
+              <MeaLazy />
             </Route>
             <Route path="/">
               <SaforaLazy />

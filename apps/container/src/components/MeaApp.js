@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { mount } from 'safora/Safora'
-import {Button} from 'components/UI'
+import { useHistory } from 'react-router-dom'
+import { mount } from 'mea/Mea'
 
 const SaforaApp = () => {
 	const ref = useRef(null)
@@ -25,9 +24,7 @@ const SaforaApp = () => {
 	}, [])
 	return (
 		<div>
-			SaforaApp
-			<Button>button another dimention</Button>
-			<Link to="/mea/list">GO TO MEA service</Link>
+			<h1>MeaApp</h1>
 			<div ref={ref} />
 		</div>
 	)

@@ -15,7 +15,8 @@ const prodConfig = {
 			name: 'container',
 			remotes: {
 					components: `components@${domain}/components/latest/remoteEntry.js`,
-					safora: `safora@${domain}/safora/latest/remoteEntry.js`
+					safora: `safora@${domain}/safora/latest/remoteEntry.js`,
+					mea: `mea@${domain}/mea/latest/remoteEntry.js`
 			},
 			shared: packageJson.dependencies
 	}),
