@@ -22,7 +22,7 @@ const Landing = (props) => {
       <header className="App-header">
         <h1 className="header">
           Docs
-          <div className="Turborepo">Safora Example Landing</div>
+          <div className="Turborepo">Safora Example Landing test</div>
         </h1>
         <div>
           {/* <Button onClick={test}>Safora dimention</Button> */}
