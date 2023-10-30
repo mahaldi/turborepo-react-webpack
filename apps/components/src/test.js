@@ -1,1 +1,3 @@
-export const test = () => console.log('on test')
+export const test = {
+    name: 'test'
+}
