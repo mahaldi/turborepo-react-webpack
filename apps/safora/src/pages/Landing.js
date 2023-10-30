@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {Button} from 'components/UI'
-import {tambah} from 'components/Utils'
+// import {tambah} from 'components/Utils'
 
 const Landing = (props) => {
   const { history, store } = props
-  const test = () => {
-    console.log(tambah(1, 1))
-  }
+  // const test = () => {
+  //   console.log(tambah(1, 1))
+  // }
 
   const goto = () => {
     history.push('/safora')
@@ -25,7 +25,7 @@ const Landing = (props) => {
           <div className="Turborepo">Safora Example Landing</div>
         </h1>
         <div>
-          <Button onClick={test}>Safora dimention</Button>
+          {/* <Button onClick={test}>Safora dimention</Button> */}
           <Button onClick={goto}>page detail safora</Button>
         </div>
       </header>

@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux'
 import configureStore from './redux/configureStore'
 import initialState from './redux/initialState'
-import {Checkpoints, meaPrefix} from 'components/Utils'
+// import {Checkpoints, meaPrefix} from 'components/Utils'
 import TestingPage from './components/Testing.jsx'
 // import {PageContext} from 'components/Context'
 // import {test} from 'components/Test'
@@ -15,7 +15,7 @@ const history = createBrowserHistory()
 const store = configureStore(initialState)
 
 const App = () => {
-  console.log('Checkpoints', Checkpoints)
+  // console.log('Checkpoints', Checkpoints)
   // const data = {
   //   name: 'mahaldi',
   //   gender: 'L'
@@ -38,10 +38,10 @@ const App = () => {
 
           <Suspense fallback={<div>loading...</div>}>
             <Switch>
-              <Route path={meaPrefix}>
+              <Route path="/mea">
                 <MeaLazy />
               </Route>
-              <Route path={Checkpoints.home}>
+              <Route path="/">
                 <SaforaLazy />
               </Route>
             </Switch>
