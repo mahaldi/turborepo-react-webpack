@@ -18,7 +18,7 @@ const devConfig = {
 			exposes: {
 				'./UI': './src/bootstrap',
 				'./Utils': './src/utils',
-				'./Context': './src/context.jsx'
+				'./Context': './src/context'
 			},
 			shared: packageJson.dependencies
 		})
