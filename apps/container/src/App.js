@@ -14,7 +14,7 @@ const history = createBrowserHistory()
 const store = configureStore(initialState)
 
 const App = () => {
-  console.log('Checkpoints', Checkpoints)
+  // console.log('Checkpoints', Checkpoints)
   // const data = {
   //   name: 'mahaldi',
   //   gender: 'L'
