@@ -8,7 +8,7 @@ const List = props => {
     }
     return (
         <div>
-            <h1>Page list Mea 1</h1>
+            <h1>Page list Mea 2</h1>
             <Button onClick={goto}>ke page safora detail</Button>
             <Link to="/mea/detail">page mea detail</Link>
         </div>
