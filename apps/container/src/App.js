@@ -36,10 +36,10 @@ const App = () => {
 
           <Suspense fallback={<div>loading...</div>}>
             <Switch>
-              <Route path="/mea">
+              <Route path={meaPrefix}>
                 <MeaLazy />
               </Route>
-              <Route path="/">
+              <Route path={Checkpoints.home}>
                 <SaforaLazy />
               </Route>
             </Switch>
