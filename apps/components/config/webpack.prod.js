@@ -16,7 +16,7 @@ const prodConfig = {
 			exposes: {
 				'./UI': './src/bootstrap',
 				'./Test': './src/test',
-				'./Utils': './src/utils'
+				// './Utils': './src/utils'
 			},
 			shared: packageJson.dependencies
 		})
