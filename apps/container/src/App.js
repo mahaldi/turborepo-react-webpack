@@ -7,7 +7,7 @@ import initialState from './redux/initialState'
 // import {Checkpoints, meaPrefix} from 'components/Utils'
 import TestingPage from './components/Testing.jsx'
 // import {PageContext} from 'components/Context'
-// import {test} from 'components/Test'
+import {test} from 'components/Test'
 
 const SaforaLazy = lazy(() => import('./components/SaforaApp'))
 const MeaLazy = lazy(() => import('./components/MeaApp'))
