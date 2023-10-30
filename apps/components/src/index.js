@@ -1,3 +1,3 @@
 import('./bootstrap')
-// import('./test')
+import('./test')
 import('./utils')
