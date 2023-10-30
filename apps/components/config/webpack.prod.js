@@ -15,8 +15,8 @@ const prodConfig = {
 			filename: 'remoteEntry.js',
 			exposes: {
 				'./UI': './src/bootstrap',
-				'./Test': './src/test'
-				// './Utils': './src/utils',
+				// './Test': './src/test'
+				'./Utils': './src/utils',
 			},
 			shared: packageJson.dependencies
 		})
