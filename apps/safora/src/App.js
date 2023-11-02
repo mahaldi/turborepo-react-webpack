@@ -6,14 +6,21 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import {rootReducer} from 'components/Slices'
 
-const store = configureStore({ reducer: rootReducer })
+// const store = configureStore({ reducer: rootReducer });
 
-const App = ({history, selector}) => {
+const App = ({history, selector, store}) => {
+  const getHomeComponent = (props) => {
+    console.log('getHomeComponent');
+    console.log('getHomeComponent props: ', props);
+    console.log('getHomeComponent store: ', store);
+    return <Landing {...props} selector={selector} />;
+  };
+
   return (
     <Provider store={store}>
       <Router history={history}>
         <Switch>
-            <Route exact path="/" component={props => <Landing {...props} selector={selector} />}/>
+            <Route exact path="/" component={getHomeComponent}/>
             <Route exact path="/safora" component={props => <Safora {...props} selector={selector} />}/>
         </Switch>
     </Router>

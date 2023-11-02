@@ -4,7 +4,7 @@ import {Button} from 'components/UI'
 import {fetchPosts, commentsSelector, postsSelector, fetchComments} from 'components/Slices'
 
 const Landing = (props) => {
-  const { history, store, selector } = props
+  const { history, store, selector } = props;
   // const test = () => {
   //   console.log(tambah(1, 1))
   // }

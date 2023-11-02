@@ -41,7 +41,7 @@ const App = () => {
                 <MeaLazy />
               </Route>
               <Route path={Checkpoints.home}>
-                <SaforaLazy />
+                <SaforaLazy store={store} />
               </Route>
             </Switch>
           </Suspense>

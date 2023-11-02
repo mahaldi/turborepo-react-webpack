@@ -6,8 +6,8 @@ import {get} from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 import {fetchComments, commentsSelector, postsSelector} from 'components/Slices'
 
-const SaforaApp = (props) => {
-	const ref = useRef(null)
+const SaforaApp = ({ store }) => {
+	const ref = useRef(null);
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const {
@@ -33,7 +33,8 @@ const SaforaApp = (props) => {
 				}
 			},
 			dispatch,
-			selector: useSelector
+			selector: useSelector,
+			store: store
 		})
 		if (onParentNavigation) {
 			history.listen(onParentNavigation)
