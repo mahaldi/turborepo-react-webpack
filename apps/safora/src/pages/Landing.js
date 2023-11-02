@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import {Button} from 'components/UI'
 // import {tambah} from 'components/Utils'
-import {fetchPosts, commentsSelector, postsSelector, fetchComments} from 'components/Slices'
-
+// import {fetchPosts, commentsSelector, postsSelector, fetchComments} from 'components/Slices'
+import {AppCount} from './AppCount.js'
 const Landing = (props) => {
   const { history, store, selector } = props
   // const test = () => {
@@ -11,13 +11,13 @@ const Landing = (props) => {
   const goto = () => {
     history.push('/safora')
   }
-	const {
-	  comments,
-	  loading: commentsLoading,
-	  error: commentsHasErrors,
-	} = selector(commentsSelector)
+	// const {
+	//   comments,
+	//   loading: commentsLoading,
+	//   error: commentsHasErrors,
+	// } = selector(commentsSelector)
   
-	console.log('comments dari landing safora', comments)
+	// console.log('comments dari landing safora', comments)
 
   // useEffect(() => {
 	// 	dispatch(fetchPosts())
@@ -29,19 +29,20 @@ const Landing = (props) => {
 	// 	dispatch(fetchComments(1))
 	// }, [dispatch])
 
-  useEffect(() => {
-    if(store)
-      console.log('printed on safora service', store.products)
-  }, [store])
+  // useEffect(() => {
+  //   if(store)
+  //     console.log('printed on safora service', store.products)
+  // }, [store])
 
   return (
     <div className="App">
       <header className="App-header">
         <h1 className="header">
           Docs
-          <div>comments dari safora length : {comments.length}</div>
+          {/* <div>comments dari safora length : {comments.length}</div> */}
           <div className="Turborepo">Safora Example Landing test 2</div>
         </h1>
+        <AppCount />
         <div>
           {/* <Button onClick={test}>Safora dimention</Button> */}
           <Button onClick={goto}>page detail safora</Button>

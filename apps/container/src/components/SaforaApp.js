@@ -15,6 +15,9 @@ const SaforaApp = (props) => {
 	  loading: commentsLoading,
 	  error: commentsHasErrors,
 	} = useSelector(commentsSelector)
+	useSelector(state => {
+		console.log('all state', state)
+	})
 	console.log('comments', comments)
 
 	useEffect(() => {

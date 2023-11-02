@@ -10,14 +10,14 @@ const store = configureStore({ reducer: rootReducer })
 
 const App = ({history, selector}) => {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <Router history={history}>
         <Switch>
             <Route exact path="/" component={props => <Landing {...props} selector={selector} />}/>
             <Route exact path="/safora" component={props => <Safora {...props} selector={selector} />}/>
         </Switch>
     </Router>
-    </Provider>
+    // {/* </Provider> */}
   )
 }
 export default App
