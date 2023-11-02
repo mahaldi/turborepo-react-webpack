@@ -11,10 +11,13 @@
   "author": "mahaldi",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.6.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

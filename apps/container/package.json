@@ -12,6 +12,7 @@
   "author": "mahaldi",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
