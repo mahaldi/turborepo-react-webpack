@@ -1,15 +1,15 @@
-name: deploy-container
+name: deploy-shell
 
 on:
   push:
     branches:
-      - main
+      - develop
     paths:
-      - 'apps/container/**'
+      - 'apps/shell/**'
 
 defaults:
   run:
-    working-directory: apps/container
+    working-directory: apps/shell
 
 jobs:
   build:
@@ -26,13 +26,13 @@ jobs:
       - uses: chrislennon/action-aws-cli@v1.1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/shell
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/container/latest/index.html"
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/shell/index.html"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

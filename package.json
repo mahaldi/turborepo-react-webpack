@@ -3,7 +3,7 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
-    "dev": "turbo run dev --no-cache --continue",
+    "dev": "turbo run dev --no-cache --continue --filter=shell --filter=opportunity-service --filter=lead-service --filter=commons",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "test": "turbo run test"
@@ -18,9 +18,9 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "container",
-    "safora",
-    "mea",
-    "components"
+    "shell",
+    "commons",
+    "lead-service",
+    "opportunity-service"
   ]
 }
