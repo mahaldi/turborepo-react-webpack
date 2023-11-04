@@ -3,7 +3,7 @@ name: deploy-opportunity-service
 on:
   push:
     branches:
-      - develop
+      - main
     paths:
       - 'apps/opportunity-service/**'
 
