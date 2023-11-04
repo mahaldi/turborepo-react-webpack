@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { mount } from 'opportunityService/bootstrap'
 
-const SaforaApp = ({store}) => {
+const OpportunityService = ({store}) => {
 	const ref = useRef(null)
 	const history = useHistory()
 
@@ -30,4 +31,7 @@ const SaforaApp = ({store}) => {
 		</div>
 	)
 }
-export default SaforaApp;
+OpportunityService.propTypes = {
+	store: PropTypes.shape({}).isRequired
+}
+export default OpportunityService;

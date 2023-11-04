@@ -2,8 +2,9 @@ import React, { useRef, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { mount } from 'leadService/bootstrap'
 import {get} from 'lodash'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchComments, commentsSelector, postsSelector} from 'commons/Slices'
+import {fetchComments, commentsSelector} from 'commons/Slices'
 
 const LeadService = ({store}) => {
 	const ref = useRef(null)
@@ -11,8 +12,8 @@ const LeadService = ({store}) => {
 	const dispatch = useDispatch()
 	const {
 	  comments,
-	  loading: commentsLoading,
-	  error: commentsHasErrors,
+	//   loading: commentsLoading,
+	//   error: commentsHasErrors,
 	} = useSelector(commentsSelector)
 	useSelector(state => {
 		console.log('all state', state)
@@ -57,5 +58,7 @@ const LeadService = ({store}) => {
 		</div>
 	)
 }
-
+LeadService.propTypes = {
+	store: PropTypes.shape({}).isRequired
+}
 export default LeadService
