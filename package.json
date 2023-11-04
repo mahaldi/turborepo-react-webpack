@@ -6,11 +6,22 @@
     "dev": "turbo run dev --no-cache --continue",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "eslint": "^8.4.1",
-    "prettier": "^2.5.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "3.0.3",
+    "stylelint": "^15.11.0",
+    "stylelint-config-recommended": "^13.0.0",
     "tsconfig": "*",
     "turbo": "latest"
   },
@@ -22,5 +33,9 @@
     "commons",
     "lead-service",
     "opportunity-service"
-  ]
+  ],
+  "lint-staged": {
+    "*.{js,jsx}": "eslint --cache --fix",
+    "*.css": "stylelint --fix"
+  }
 }
