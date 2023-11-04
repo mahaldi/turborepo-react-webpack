@@ -1,6 +1,8 @@
 import React from "react";
 import {Button} from 'commons/Components'
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 const List = props => {
     const {history} = props
     const goto = () => {
@@ -14,4 +16,10 @@ const List = props => {
         </div>
     )
 }
+
+List.propTypes = {
+	history: PropTypes.shape({
+        push: PropTypes.func
+    }).isRequired,
+};
 export default List
