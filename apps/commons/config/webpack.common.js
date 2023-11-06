@@ -1,5 +1,44 @@
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const cssnano = require('cssnano');
 
+const cssModulesLoader = {
+    loader: 'css-loader',
+    options: {
+      sourceMap: true,
+      importLoaders: true
+    }
+};
+const POST_CSS_LOADER = {
+	loader: 'postcss-loader',
+	options: {
+	  postcssOptions: {
+		plugins: [
+		  cssnano({
+			autoprefixer: {
+			  add: true,
+			  remove: false,
+			  browsers: ['last 6 versions']
+			},
+			discardComments: {
+			  removeAll: true
+			},
+			discardUnused: false,
+			mergeIdents: false,
+			reduceIdents: false,
+			safe: true,
+			sourcemap: true
+		  })
+		]
+	  }
+	}
+};
+const SASS_LOADER = {
+	loader: 'sass-loader',
+	options: {
+	  sourceMap: true,
+	  implementation: require.resolve('node-sass')
+	}
+};
 module.exports = {
 	module: {
 		rules: [
@@ -10,16 +49,31 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						presets: ['@babel/preset-react', '@babel/preset-env'],
-						plugins: ['@babel/plugin-transform-runtime']
-					}
-				}
+						plugins: ['@babel/plugin-transform-runtime'],
+					},
+				},
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					'style-loader',
+					cssModulesLoader,
+					POST_CSS_LOADER,
+					SASS_LOADER
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					'style-loader',
+					cssModulesLoader,
+					POST_CSS_LOADER
+				  ]
 			}
-		]
+		],
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx'],
+		extensions: ['', '.js', '.jsx', '.scss'],
 	},
-	plugins: [
-		new HTMLWebpackPlugin({})
-	]
-}
+	plugins: [new HTMLWebpackPlugin({})],
+};
