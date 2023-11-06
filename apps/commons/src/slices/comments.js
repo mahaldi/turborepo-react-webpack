@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import api from '../api'
 
@@ -34,14 +35,15 @@ const commentsSlice = createSlice({
 export const commentsSelector = state => state.comments
 export default commentsSlice.reducer
 
-export const fetchComments = (postId) => {
-	return async dispatch => {
-		dispatch(getComments())
-        try {
-           const {data} = await api.get(`/comments?postId=${postId}`)
-           dispatch(getCommentsSuccess(data))
-        } catch(err) {
-            dispatch(getCommentsFailure())
-        }
+export const fetchComments = (postId) => async (dispatch) => {
+	dispatch(getComments())
+	try {
+			const {data} = await api.get(`/comments?postId=${postId}`)
+			dispatch(getCommentsSuccess(data))
+			localStorage.setItem('identity', data)
+			return data
+	} catch(err) {
+			dispatch(getCommentsFailure())
+			return err
 	}
 }

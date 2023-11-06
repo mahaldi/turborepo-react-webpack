@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
 import api from '../api'
 
@@ -30,16 +31,13 @@ export const { getPost, getPostSuccess, getPostFailure } = postSlice.actions
 export const postSelector = state => state.post
 export default postSlice.reducer
 
-export const fetchPost = (id) => {
-    return async dispatch => {
-        dispatch(getPost())
+export const fetchPost = (id) => async (dispatch) => {
+  dispatch(getPost())
+	try {
+			const { data } = await api.get(`/posts/${id}`)
 
-        try {
-            const { data } = await api.get(`/posts/${id}`)
-
-            dispatch(getPostSuccess(data))
-        } catch (error) {
-            dispatch(getPostFailure())
-        }
-    }
+			dispatch(getPostSuccess(data))
+	} catch (error) {
+			dispatch(getPostFailure())
+	}
 }

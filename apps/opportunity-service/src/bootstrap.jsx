@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDom from 'react-dom'
-import App from "./App";
 import { createMemoryHistory, createBrowserHistory } from 'history'
+import App from "./App";
 
 const mount = (el, { onParentNavigation, defaultHistory, initialPath }) => {
 	const history = defaultHistory || createMemoryHistory({
@@ -31,4 +31,5 @@ if (process.env.NODE_ENV === 'development') {
 	}
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export { mount }
