@@ -1,7 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const cssnano = require('cssnano');
 
-let localIdentName = '[local]__[name]';
+let localIdentName = 'commons__[local]__[name]';
   if (process.env.NODE_ENV === 'production') {
     localIdentName += '___[hash:base64:5]';
 }
