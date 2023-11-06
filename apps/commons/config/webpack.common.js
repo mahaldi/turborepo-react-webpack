@@ -1,11 +1,18 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const cssnano = require('cssnano');
 
+let localIdentName = '[name]__[local]';
+  if (process.env.NODE_ENV === 'production') {
+    localIdentName += '___[hash:base64:5]';
+}
 const cssModulesLoader = {
     loader: 'css-loader',
     options: {
       sourceMap: true,
-      importLoaders: true
+      importLoaders: true,
+	  modules: {
+        localIdentName
+      },
     }
 };
 const POST_CSS_LOADER = {

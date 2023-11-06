@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import classes from './style.scss'
-// import './style.scss'
 
 export const Button = ({children, onClick}) => {
     const handleClick = () => {
@@ -12,7 +11,7 @@ export const Button = ({children, onClick}) => {
     }
     console.log('classes', classes)
     return (
-        <button type='button' onClick={handleClick}>{children} tes 1</button>
+        <button className={classes.button} type='button' onClick={handleClick}>{children} tes 1</button>
     )
 }
 Button.propTypes = {
