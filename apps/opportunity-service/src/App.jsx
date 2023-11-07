@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 
 import List from './pages/List';
 import Detail from './pages/Detail';
+import EditOppty from './pages/Edit';
 
 const App = ({ history, store }) => (
 	<Provider store={store}>
@@ -13,6 +14,7 @@ const App = ({ history, store }) => (
 			<Switch>
 				<Route exact path={Checkpoints.opptyList} component={List} />
 				<Route exact path={Checkpoints.opptyDetail} component={Detail} />
+				<Route exact path={Checkpoints.opptyEdit} component={EditOppty} />
 			</Switch>
 		</Router>
 	</Provider>

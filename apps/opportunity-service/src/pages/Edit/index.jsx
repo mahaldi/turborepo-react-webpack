@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
 import { Button } from 'commons/Components';
 import { Checkpoints } from 'commons/Utils';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchPost, postSelector } from 'commons/Slices';
 import PropTypes from 'prop-types';
 import {get} from 'lodash'
 
-const Detail = (props) => {
+const EditOppty = (props) => {
 	const {history, match} = props
 	const id = get(match, 'params.id')
-
 	const dispatch = useDispatch()
 	const {loading: loadingPost, post: postDetail} = useSelector(postSelector)
 
@@ -18,30 +17,34 @@ const Detail = (props) => {
 			dispatch(fetchPost(id))
 	}, [])
 
-	const directEdit = () => {
-		history.push({
-			pathname: Checkpoints.opptyEdit.replace(':id', id)
+	const handleSubmit = () => {
+		dispatch(fetchPost(id)).then(res => {
+			console.log('res', res)
+			if(res)
+				history.push({
+					pathname: Checkpoints.opptyList
+				})
 		})
 	}
 	return (
 		<div>
-			<h1>Page Detail Oppty</h1>
+			<h1>Page Edit oppty</h1>
 			{
-				loadingPost ? <h1>Loading...</h1> : <div>
+				loadingPost ? <h1>Loading</h1> : <div>
 					<h3>Title</h3>
-					<p>{postDetail.title}</p>
+					<input defaultValue={postDetail.title}/>
 					<h5>body</h5>
-					<p>{postDetail.body}</p>
+					<input defaultValue={postDetail.body}/>
 				</div>
 			}
-			<Button onClick={directEdit}>Edit Detail oppty</Button>
+			<Button onClick={handleSubmit}>Submit</Button>
 		</div>
 	)
 }
-Detail.propTypes = {
+EditOppty.propTypes = {
 	history: PropTypes.shape({
 		push: PropTypes.func.isRequired
 	}).isRequired,
 	match: PropTypes.shape({}).isRequired,
 }
-export default Detail;
+export default EditOppty
