@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
-import commentsReducer from './comments'
+import comments from './comments'
 import post from './post'
 import posts from './posts'
+import comment from './comment'
 
 // eslint-disable-next-line import/prefer-default-export
 export const rootReducer = combineReducers({
-  comments: commentsReducer,
+  comments,
   post,
-  posts
+  posts,
+	comment
 })

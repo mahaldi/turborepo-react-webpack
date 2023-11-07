@@ -7,7 +7,7 @@ import { fetchPosts, postsSelector } from 'commons/Slices';
 import { useDispatch, useSelector } from 'react-redux';
 
 const List = () => {
-	// const { history } = props;
+
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(0)
 	const {loading: loadingPost, posts: postList = []} = useSelector(postsSelector)

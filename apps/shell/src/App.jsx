@@ -2,12 +2,12 @@ import React, { lazy, Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
-import { Checkpoints, opptyServicePrefix } from 'commons/Utils';
+import { Checkpoints, opptyServicePrefix, leadServicePrefix } from 'commons/Utils';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from 'commons/Slices';
 import Layout from './layout';
 
-// const LeadServiceLazy = lazy(() => import('./services/leadService'));
+const LeadServiceLazy = lazy(() => import('./adapter/lead'));
 const OpportunityServiceLazy = lazy(() =>
 	import('./adapter/opportunity')
 );
@@ -21,12 +21,13 @@ const App = () => (
 			<Layout>
 				<Suspense fallback={<div>loading...</div>}>
 					<Switch>
+						<Route path={leadServicePrefix}>
+							<LeadServiceLazy store={store} />
+						</Route>
 						<Route path={opptyServicePrefix}>
 							<OpportunityServiceLazy store={store} />
 						</Route>
-						<Route path={Checkpoints.home}>
-							<LoginLazy store={store} />
-						</Route>
+						<Route path={Checkpoints.home} component={LoginLazy}/>
 					</Switch>
 				</Suspense>
 			</Layout>

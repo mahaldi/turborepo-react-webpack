@@ -35,12 +35,11 @@ const commentsSlice = createSlice({
 export const commentsSelector = state => state.comments
 export default commentsSlice.reducer
 
-export const fetchComments = (postId) => async (dispatch) => {
+export const fetchComments = ({start = 0, limit = 10}) => async (dispatch) => {
 	dispatch(getComments())
 	try {
-			const {data} = await api.get(`/comments?postId=${postId}`)
+			const {data} = await api.get(`/comments?_start=${start}&_limit=${limit}`)
 			dispatch(getCommentsSuccess(data))
-			localStorage.setItem('identity', data)
 			return data
 	} catch(err) {
 			dispatch(getCommentsFailure())
