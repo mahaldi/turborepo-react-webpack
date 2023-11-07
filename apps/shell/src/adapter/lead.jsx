@@ -41,7 +41,7 @@ const LeadService = ({store}) => {
 			history.listen(onParentNavigation)
 		}
 	}, [])
-	
+
 	const kucing = {
 		name: 'ceboi'
 	}

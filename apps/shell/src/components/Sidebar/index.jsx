@@ -4,9 +4,9 @@ import classes from './sidebar.scss'
 const Sidebar = () => (
 	<div className={classes.sidebar}>
 		<ul>
-			<li>Menu 1</li>
-			<li>Menu 2</li>
-			<li>Menu 3</li>
+			<li>Oppty Service</li>
+			<li>Lead Service</li>
+			<li>Logout</li>
 		</ul>
 	</div>
 )

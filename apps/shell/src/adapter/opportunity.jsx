@@ -24,12 +24,8 @@ const OpportunityService = ({store}) => {
 			history.listen(onParentNavigation)
 		}
 	}, [])
-	return (
-		<div>
-			<h1>MeaApp</h1>
-			<div ref={ref} />
-		</div>
-	)
+
+	return <div ref={ref} />
 }
 OpportunityService.propTypes = {
 	store: PropTypes.shape({}).isRequired

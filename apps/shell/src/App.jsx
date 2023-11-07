@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/no-unstable-nested-components */
 import React, { lazy, Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
@@ -11,7 +9,7 @@ import Layout from './layout';
 
 // const LeadServiceLazy = lazy(() => import('./services/leadService'));
 const OpportunityServiceLazy = lazy(() =>
-	import('./services/opportunityService')
+	import('./adapter/opportunity')
 );
 const LoginLazy = lazy(() => import('./components/Login'))
 const history = createBrowserHistory();
@@ -23,8 +21,12 @@ const App = () => (
 			<Layout>
 				<Suspense fallback={<div>loading...</div>}>
 					<Switch>
-						<Route path={opptyServicePrefix} component={props => <OpportunityServiceLazy store={store} {...props} />}/>
-						<Route path={Checkpoints.home} component={props => <LoginLazy store={store} {...props} />}/>
+						<Route path={opptyServicePrefix}>
+							<OpportunityServiceLazy store={store} />
+						</Route>
+						<Route path={Checkpoints.home}>
+							<LoginLazy store={store} />
+						</Route>
 					</Switch>
 				</Suspense>
 			</Layout>

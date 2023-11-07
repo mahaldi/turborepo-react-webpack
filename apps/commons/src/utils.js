@@ -14,5 +14,5 @@ export const Checkpoints = {
 		leadEdit: `${leadServicePrefix}/detail/:id/edit`,
 		opptyList: `${opptyServicePrefix}/list`,
 		opptyDetail: `${opptyServicePrefix}/detail/:id`,
-		opptyEdit: `${opptyServicePrefix}/detail:/id/edit`,
+		opptyEdit: `${opptyServicePrefix}/detail/:id/edit`,
 }

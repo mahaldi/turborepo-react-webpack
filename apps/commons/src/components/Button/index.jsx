@@ -1,20 +1,20 @@
 /* eslint-disable import/prefer-default-export */
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import classes from './style.scss'
+import classes from './style.scss';
 
-export const Button = ({children, onClick}) => {
-    const handleClick = () => {
-        console.log('clicked')
-        if(onClick)
-            onClick()
-    }
-    console.log('classes', classes)
-    return (
-        <button className={classes.button} type='button' onClick={handleClick}>{children} tes 1</button>
-    )
-}
+export const Button = ({ children, onClick, ...rest }) => {
+	const { disabled } = rest
+	const handleClick = () => {
+		if (onClick) onClick();
+	};
+	return (
+		<button className={classes.button} disabled={disabled} type="button" onClick={handleClick}>
+			{children}
+		</button>
+	);
+};
 Button.propTypes = {
-    children: PropTypes.node.isRequired,
-    onClick: PropTypes.func.isRequired
-}
+	children: PropTypes.node.isRequired,
+	onClick: PropTypes.func.isRequired,
+};

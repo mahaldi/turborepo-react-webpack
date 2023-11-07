@@ -21,14 +21,16 @@ const Layout = ({children}) => {
 			history.push(Checkpoints.home)
 		}
 	},[location])
-
+	console.log('classes', classes)
 	return (
 		<div className={classes.container}>
 			{
 				!isHome ? (
 					<>
 						<Sidebar />
-						{children}
+						<div className={classes.wrapper}>
+							{children}
+						</div>
 					</>
 				) : <div>{children}</div>
 			}
