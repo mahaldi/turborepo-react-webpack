@@ -11,7 +11,7 @@ const DetailLead = (props) => {
 	const id = get(match, 'params.id')
 	const dispatch = useDispatch()
 	const {loading: loadingComment, comment: commentDetail} = useSelector(commentSelector)
-	console.log('commentDetail', commentDetail)
+
 	useEffect(() => {
 		if(id)
 			dispatch(fetchComment(id))
