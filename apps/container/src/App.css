@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -23,4 +23,74 @@
 
 .App-link {
   color: white;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: 8px solid green;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+  width: 100%;
+  background-color: rgb(241, 255, 241);;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-weight: 700;
+  padding: 5px 10px;
+}
+
+.background-green {
+  background-color: green;
+}
+.text-green {
+  color: green;
+}
+.background-red {
+  background-color: red;
+}
+.border-red {
+  border: 5px solid red;
+}
+.text-red {
+  color: red;
+}
+.background-blue {
+  background-color: blue;
+}
+.border-blue {
+  border: 5px solid blue;
+}
+.text-blue {
+  color: blue;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  color: white;
+}
+
+
+.child {
+  margin: 40px;
+  position: relative;
 }

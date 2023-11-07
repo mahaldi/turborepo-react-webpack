@@ -1,54 +1,147 @@
-import React, {useEffect} from "react";
-import {Button} from 'components/UI'
-// import {tambah} from 'components/Utils'
-import {fetchPosts, commentsSelector, postsSelector, fetchComments} from 'components/Slices'
+import React, { useState } from 'react';
+import { fetchPostRQ, createNewPostRQ } from 'components/Slices';
+import { useMutation, useQuery } from 'react-query';
+import '../App.css';
+import { Link } from 'react-router-dom';
+import { deletePostRQ, getDetailPostRQ } from '../../../components/src/slices/posts';
 
 const Landing = (props) => {
-  const { history, store, selector } = props;
-  // const test = () => {
-  //   console.log(tambah(1, 1))
-  // }
-  const goto = () => {
-    history.push('/safora')
-  }
-	const {
-	  comments,
-	  loading: commentsLoading,
-	  error: commentsHasErrors,
-	} = selector(commentsSelector)
-  
-	console.log('comments dari landing safora', comments)
+	const { client } = props;
 
-  // useEffect(() => {
-	// 	dispatch(fetchPosts())
-	// }, [dispatch])
+	// get data
+	const { data: posts, isLoading, isError, status } = useQuery(
+		[ 'posts', 12 ], // queryKey
+		() => fetchPostRQ(), // queryFn
+		{
+			// Here you can add options like retries, refetch interval, etc.
 
+			// staleTime: 1000 * 60 * 5, // example: refresh data every 5 mins when re-render
+			// refetchInterval: 1000, // Refetch setiap 1 detik
 
-	// useEffect(() => {
-  //   console.log('dari safora landing')
-	// 	dispatch(fetchComments(1))
-	// }, [dispatch])
+			// refetchOnWindowFocus: true, // turn off automatic refetch when window get focus
+			// staleTime: 1,
 
-  useEffect(() => {
-    if(store)
-      console.log('printed on safora service', store.products)
-  }, [store])
+			retry: 2, // retry fetch max 2 times if failed
+			onSuccess: (data) => {
+				console.log('Successfully Fetch Posts', data);
+			},
+			onError: (error) => {
+				console.error('Error fetching data:', error);
+			},
+			placeholderData: [ { id: 'kosong', title: 'kosong', author: 'kosong' } ]
+		}
+	);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="header">
-          Docs
-          <div>comments dari safora length : {comments.length}</div>
-          <div className="Turborepo">Safora Example Landing test 2</div>
-        </h1>
-        <div>
-          {/* <Button onClick={test}>Safora dimention</Button> */}
-          <Button onClick={goto}>page detail safora</Button>
-        </div>
-      </header>
-    </div>
-  )
-}
+	// if (status === 'loading') return <span>Loading...</span>;
+	if (isLoading) return <span>Loading...</span>;
+
+	// if (status === 'error') return <span>Loading...</span>;
+	if (isError) return <span>Error: {isError.message}</span>;
+
+	// post data
+	const [ formData, setFormData ] = useState({
+		title: '',
+		author: ''
+	});
+
+	const { mutate: createPost } = useMutation(createNewPostRQ, {
+		onSuccess: () => {
+			// Invalidate and refetch query get posts
+			client.invalidateQueries('posts');
+		}
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({
+			...formData,
+			[name]: value
+		});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		createPost({
+			title: formData.title,
+			author: formData.author
+		});
+	};
+
+	// delete data
+	const { mutate: doDeletePost } = useMutation(deletePostRQ, {
+		onSuccess: () => {
+			client.invalidateQueries('posts');
+		},
+		onError: (error) => {
+			alert(error.message);
+		}
+	});
+
+	const handleDeletePost = (postId) => () => {
+		doDeletePost(postId);
+	};
+
+	// pre fetch data detail
+	const prefetchDataDetail = (postId) => () => {
+		client.prefetchQuery([ 'detailPost', postId ], () => getDetailPostRQ(postId));
+	};
+
+	return (
+		<div className="App">
+			<header className="App-header">
+				<h1 className="header">
+					<div className="text-red">SAFORA LANDING PAGE</div>
+				</h1>
+				<h3 style={{ textAlign: 'center', width: '100%' }}>List Post</h3>
+				<form onSubmit={handleSubmit}>
+					<input
+						type="text"
+						name="author"
+						placeholder="Author"
+						value={formData.author}
+						onChange={handleChange}
+						required
+					/>
+					<input
+						type="text"
+						name="title"
+						placeholder="Title"
+						value={formData.title}
+						onChange={handleChange}
+						required
+					/>
+					<button type="submit">Create Post</button>
+				</form>
+				<table id="sfa-table">
+					<thead>
+						<tr>
+							<th>Post ID</th>
+							<th>Author</th>
+							<th>Title</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{posts.map((post) => (
+							<tr key={post.id}>
+								<td>{post.id}</td>
+								<td>{post.author}</td>
+								<td>{post.title}</td>
+								<td>
+									<div>
+										<button onMouseEnter={prefetchDataDetail(post.id)}>
+											<Link to={`/safora/post/${post.id}`}>Detail</Link>
+										</button>
+										<button onClick={handleDeletePost(post.id)}>Delete</button>
+									</div>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</header>
+		</div>
+	);
+};
 
 export default Landing;
