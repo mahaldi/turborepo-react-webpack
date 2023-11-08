@@ -1,75 +1,86 @@
-
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import PropTypes from 'prop-types';
-import inputStyle from './input.scss'
+import inputStyle from './input.scss';
 
-export const Input = props => {
+export const Input = (props) => {
 	const {
 		onChange,
-		name,
 		placeholder,
 		disabled,
 		id,
-		value,
 		type,
 		width,
 		style: styleProp,
-		defaultValue,
-		height
-	} = props
+		height,
+		register,
+		name,
+		validation,
+		errors,
+	} = props;
 
-	const handleChange = e => {
-    const { target: { value: targetValue } } = e
-    onChange(targetValue, name)
-	}
+	const hookForm = register(name, validation);
+
+	const handleChange = (e) => {
+		const {
+			target: { value: targetValue },
+		} = e;
+		onChange(targetValue, name);
+		if (register) {
+			hookForm.onChange(e);
+		}
+	};
 
 	const style = {
 		width,
 		height,
-		...styleProp
-	}
+		...styleProp,
+	};
 
 	return (
-		<div className={inputStyle.wrapper}>
-			<input
-				className={inputStyle.input}
-				name={name}
-				onChange={handleChange}
-				placeholder={placeholder}
-				disabled={disabled}
-				id={id}
-				value={value}
-				type={type}
-				style={style}
-				defaultValue={defaultValue}
-			/>
-		</div>
-	)
-}
+		<>
+			<div className={inputStyle.wrapper}>
+				<input
+					className={inputStyle.input}
+					onChange={handleChange}
+					placeholder={placeholder}
+					disabled={disabled}
+					id={id || name}
+					type={type}
+					style={style}
+					name={name}
+					ref={hookForm.ref}
+				/>
+			</div>
+			{errors[name] && <span className={inputStyle.errorMsg}>{errors[name]?.message}</span>}
+		</>
+	);
+};
 Input.propTypes = {
-  onChange: PropTypes.func,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  value: PropTypes.string,
-  name: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'number']),
+	onChange: PropTypes.func,
+	placeholder: PropTypes.string,
+	disabled: PropTypes.bool,
+	type: PropTypes.oneOf(['text', 'number']),
 	id: PropTypes.string,
 	width: PropTypes.string,
 	style: PropTypes.shape({}),
-	defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	height: PropTypes.string
-}
+	height: PropTypes.string,
+	register: PropTypes.func,
+	name: PropTypes.string,
+	validation: PropTypes.shape({}),
+	errors: PropTypes.shape({}),
+};
 Input.defaultProps = {
 	onChange: () => {},
 	placeholder: 'Type...',
 	disabled: false,
-	value: null,
-	name: null,
 	type: 'text',
 	id: null,
 	width: 'auto',
 	style: {},
-	defaultValue: null,
-	height: '46px'
-}
+	height: '46px',
+	register: null,
+	name: '',
+	validation: {},
+	errors: {},
+};
