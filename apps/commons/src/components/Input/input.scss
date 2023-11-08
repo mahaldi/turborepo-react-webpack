@@ -1,0 +1,31 @@
+@import '../../styles/';
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+	border: 1px solid $black02;
+	width: fit-content;
+}
+
+.input {
+	color: $black01;
+	font-size: 14px;
+  padding-left: 10px;
+  outline: none;
+  line-height: 17px;
+	border: none;
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    outline: none;
+  }
+
+	&::placeholder {
+		color: $black03;
+	}
+	&:disabled {
+		background-color: $white03;
+	}
+}

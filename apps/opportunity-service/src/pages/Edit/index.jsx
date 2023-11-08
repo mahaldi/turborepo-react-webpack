@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Button } from 'commons/Components';
+import { Button, Input } from 'commons/Components';
 import { Checkpoints } from 'commons/Utils';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPost, postSelector } from 'commons/Slices';
@@ -32,9 +32,9 @@ const EditOppty = (props) => {
 			{
 				loadingPost ? <h1>Loading</h1> : <div>
 					<h3>Title</h3>
-					<input defaultValue={postDetail.title}/>
+					<Input defaultValue={postDetail.title}/>
 					<h5>body</h5>
-					<input defaultValue={postDetail.body}/>
+					<Input defaultValue={postDetail.body}/>
 				</div>
 			}
 			<Button onClick={handleSubmit}>Submit</Button>
