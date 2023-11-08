@@ -19,7 +19,6 @@ const EditOppty = (props) => {
 
 	const handleSubmit = () => {
 		dispatch(fetchPost(id)).then(res => {
-			console.log('res', res)
 			if(res)
 				history.push({
 					pathname: Checkpoints.opptyList
