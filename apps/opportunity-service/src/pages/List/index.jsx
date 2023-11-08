@@ -32,10 +32,12 @@ const List = () => {
 							<Link to={Checkpoints.opptyDetail.replace(':id', item.id)}>{item.title}</Link>
 						</li>
 					))}
+					<div style={{display: 'flex', gap: 12, marginTop: 8}}>
+						<Button variant='outline' onClick={() => handlePage(true)}>Next page</Button>
+						<Button variant='outline' disabled={page === 0} onClick={handlePage}>Before page</Button>
+					</div>
 				</div>
 			}
-			<Button onClick={() => handlePage(true)}>Next page</Button>
-			<Button disabled={page === 0} onClick={handlePage}>Before page</Button>
 		</div>
 	);
 };

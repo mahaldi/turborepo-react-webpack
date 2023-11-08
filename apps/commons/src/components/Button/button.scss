@@ -1,0 +1,45 @@
+@import '../../styles/';
+
+.base {
+  position: relative;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+	border: none;
+	color: $white01;
+	border-radius: 2px;
+  &:active {
+    outline: none;
+		opacity: 0.5;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    opacity: 1;
+  }
+  &:disabled {
+    cursor: not-allowed;
+		background-color: rgba(0,0,0,.12)
+  }
+	transition: opacity .3s ease-in-out;
+}
+
+.primary {
+  min-width: 40px;
+	background-color: $primary;
+	&:disabled {
+    color: $black03;
+  }
+}
+
+.outline {
+	background-color: $white01;
+	border: 1px solid $black01;
+	color: $black01;
+	&:disabled {
+		color: $white03;
+		border-color: $white03;
+		background-color: $white01;
+	}
+}

@@ -1,4 +1,5 @@
 import('./components/index')
 import('./utils')
-import('./context.jsx')
+import('./context')
 import('./slices/index')
+import('./styles/index.scss')

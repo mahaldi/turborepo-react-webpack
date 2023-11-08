@@ -19,7 +19,8 @@ const devConfig = {
 				'./Components': './src/components/index',
 				'./Utils': './src/utils',
 				'./Context': './src/context.jsx',
-				'./Slices': './src/slices/index'
+				'./Slices': './src/slices/index',
+				'./Styles': './src/styles/index.scss'
 			},
 			shared: packageJson.dependencies
 		})

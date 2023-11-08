@@ -1,6 +1,6 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
-const packageJson = require('../package.json');
 const { merge } = require('webpack-merge')
+const packageJson = require('../package.json');
 const commonConfig = require('./webpack.common')
 
 const prodConfig = {
@@ -16,8 +16,9 @@ const prodConfig = {
 			exposes: {
 				'./Components': './src/components/index',
 				'./Utils': './src/utils',
-				'./Context': './src/context.jsx',
-				'./Slices': './src/slices/index'
+				'./Context': './src/context',
+				'./Slices': './src/slices/index',
+				'./Styles': './src/styles/index.scss'
 			},
 			shared: packageJson.dependencies
 		})

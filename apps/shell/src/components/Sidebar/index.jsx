@@ -3,6 +3,8 @@ import {Checkpoints} from 'commons/Utils'
 import { Link, useHistory } from "react-router-dom";
 import classes from './sidebar.scss'
 
+import 'commons/Styles'
+
 const Sidebar = () => {
 	const history = useHistory()
 
