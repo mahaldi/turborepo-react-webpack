@@ -1,6 +1,7 @@
 import React from 'react';
 import {Checkpoints} from 'commons/Utils'
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import {Button} from 'commons/Components'
 import classes from './sidebar.scss'
 
 import 'commons/Styles'
@@ -19,10 +20,10 @@ const Sidebar = () => {
 		<div className={classes.sidebar}>
 			<ul>
 				<li>
-					<Link to={Checkpoints.opptyList}>Oppty Service</Link>
+					<Button history={history} variant="link" to={Checkpoints.opptyList}>Oppty Service</Button>
 				</li>
 				<li>
-					<Link to={Checkpoints.leadList}>Lead Service</Link>
+					<Button history={history} variant="link" to={Checkpoints.leadList}>Lead Service</Button>
 				</li>
 				<li>
 					<button type='button' onClick={handleLogout}>Logout</button>

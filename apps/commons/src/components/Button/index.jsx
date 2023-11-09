@@ -2,6 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link, Router} from 'react-router-dom'
 // import ButtonHOC from './HOC';
 import buttonStyle from './button.scss';
 
@@ -15,11 +16,11 @@ export const Button = ({ children, onClick, ...rest }) => {
 		width,
 		padding,
 		fontSize,
-		height
+		height,
+		to,
+		history
 	} = rest
-	const handleClick = () => {
-		if (onClick) onClick();
-	};
+
 	const classes = []
 
 	switch(variant) {
@@ -28,6 +29,9 @@ export const Button = ({ children, onClick, ...rest }) => {
 			break;
 		case 'outline':
 			classes.push(buttonStyle.outline)
+			break;
+		case 'link':
+			classes.push(buttonStyle.link)
 			break;
 		default:
 			break;
@@ -39,17 +43,29 @@ export const Button = ({ children, onClick, ...rest }) => {
 		height,
 		...styleProps
 	}
-	return (
-		<button
-			className={`${buttonStyle.base} ${classes}`}
-			disabled={disabled}
-			type={type}
-			onClick={handleClick}
-			style={style}
-		>
-			{children}
-		</button>
-	);
+
+	switch(variant) {
+		case 'link':
+			return (
+				<Router history={history}>
+					<Link className={`${buttonStyle.base} ${classes}`} to={to} onClick={onClick}>
+						{children}
+					</Link>
+				</Router>
+			)
+		default:
+			return (
+				<button
+					className={`${buttonStyle.base} ${classes}`}
+					disabled={disabled}
+					type={type}
+					onClick={onClick}
+					style={style}
+				>
+					{children}
+				</button>
+			);
+	}
 };
 Button.defaultProps = {
 	variant: 'primary',
@@ -63,10 +79,13 @@ Button.defaultProps = {
 	fontSize: '14px',
 	padding: '0 20px',
 	height: '40px',
+	to: null,
+	onClick: () => {},
+	history: {}
 }
 Button.propTypes = {
 	children: PropTypes.node.isRequired,
-	onClick: PropTypes.func.isRequired,
+	onClick: PropTypes.func,
   variant: PropTypes.oneOf(['link', 'primary', 'outline', 'custom']),
 	style: PropTypes.shape({}),
 	disabled: PropTypes.bool,
@@ -77,6 +96,8 @@ Button.propTypes = {
 	width: PropTypes.string,
 	fontSize: PropTypes.string,
 	padding: PropTypes.string,
-	height: PropTypes.string
+	height: PropTypes.string,
+	to: PropTypes.string,
+	history: PropTypes.shape({})
 };
 // export const Button = ButtonHOC(ButtonComponent)
