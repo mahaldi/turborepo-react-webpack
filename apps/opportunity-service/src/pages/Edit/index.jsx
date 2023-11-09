@@ -21,13 +21,11 @@ const EditOppty = (props) => {
 	}, [])
 
 	useEffect(() => {
-		console.log('postDetail.title', postDetail.title)
 		setValue('title', postDetail.title)
 		setValue('body', postDetail.body)
 	}, [postDetail])
 
 	const onSubmit = (data) => {
-		console.log('data form', data)
 		if(data) {
 			dispatch(fetchPost(id)).then(res => {
 				if(res)
