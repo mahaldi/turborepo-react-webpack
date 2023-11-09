@@ -3,9 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link, Router} from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 // import ButtonHOC from './HOC';
 import buttonStyle from './button.scss';
 
+const defaultHistory = createBrowserHistory()
 export const Button = ({ children, onClick, ...rest }) => {
 	const {
 		disabled,
@@ -48,7 +50,7 @@ export const Button = ({ children, onClick, ...rest }) => {
 		case 'link':
 			return (
 				<Router history={history}>
-					<Link className={`${buttonStyle.base} ${classes}`} to={to} onClick={onClick}>
+					<Link className={`${buttonStyle.base} ${classes}`} to={to || '#'} onClick={onClick}>
 						{children}
 					</Link>
 				</Router>
@@ -81,7 +83,7 @@ Button.defaultProps = {
 	height: '40px',
 	to: null,
 	onClick: () => {},
-	history: {}
+	history: defaultHistory
 }
 Button.propTypes = {
 	children: PropTypes.node.isRequired,

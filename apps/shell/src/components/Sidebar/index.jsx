@@ -4,11 +4,8 @@ import { useHistory } from "react-router-dom";
 import {Button} from 'commons/Components'
 import classes from './sidebar.scss'
 
-import 'commons/Styles'
-
 const Sidebar = () => {
 	const history = useHistory()
-
 	const handleLogout = () => {
 		const isHasIdentity = localStorage.getItem('identity')
 		if(isHasIdentity) {
@@ -26,7 +23,7 @@ const Sidebar = () => {
 					<Button history={history} variant="link" to={Checkpoints.leadList}>Lead Service</Button>
 				</li>
 				<li>
-					<button type='button' onClick={handleLogout}>Logout</button>
+					<Button variant="link" onClick={handleLogout}>Logout</Button>
 				</li>
 			</ul>
 		</div>
