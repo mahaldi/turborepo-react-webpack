@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from 'commons/Components';
-import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { Checkpoints } from 'commons/Utils';
 import { fetchPosts, postsSelector } from 'commons/Slices';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom'
 
 const List = () => {
 
+	const history = useHistory()
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(0)
 	const {loading: loadingPost, posts: postList = []} = useSelector(postsSelector)
@@ -29,7 +30,7 @@ const List = () => {
 				loadingPost ? <h1>Loading...</h1> : <div>
 					{postList.map(item => (
 						<li key={item.id}>
-							<Link to={Checkpoints.opptyDetail.replace(':id', item.id)}>{item.title}</Link>
+							<Button variant="link" history={history} to={Checkpoints.opptyDetail.replace(':id', item.id)}>{item.title}</Button>
 						</li>
 					))}
 					<div style={{display: 'flex', gap: 12, marginTop: 8}}>
