@@ -18,7 +18,8 @@ const prodConfig = {
 				'./Utils': './src/utils',
 				'./Context': './src/context',
 				'./Slices': './src/slices/index',
-				'./Styles': './src/styles/index.scss'
+				'./Styles': './src/styles/index.scss',
+				'./Hooks': './src/hooks/index',
 			},
 			shared: packageJson.dependencies
 		})
