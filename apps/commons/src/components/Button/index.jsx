@@ -50,7 +50,7 @@ export const Button = ({ children, onClick, ...rest }) => {
 		case 'link':
 			return (
 				<Router history={history}>
-					<Link className={`${buttonStyle.base} ${classes}`} to={to || '#'} onClick={onClick}>
+					<Link className={`${buttonStyle.base} ${classes}`} style={style} to={to || '#'} onClick={onClick}>
 						{children}
 					</Link>
 				</Router>
