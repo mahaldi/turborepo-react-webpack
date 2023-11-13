@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { mount } from 'leadService/bootstrap'
 import PropTypes from 'prop-types'
 
-const LeadService = ({store}) => {
+const LeadService = (props) => {
+	const { client, store } = props;
 	const ref = useRef(null)
 	const history = useHistory()
 
@@ -18,7 +19,8 @@ const LeadService = ({store}) => {
 					history.push(nextPathname)
 				}
 			},
-			store
+			store,
+			client
 		})
 		if (onParentNavigation) {
 			history.listen(onParentNavigation)
@@ -28,6 +30,7 @@ const LeadService = ({store}) => {
 	return <div ref={ref} />
 }
 LeadService.propTypes = {
+	client: PropTypes.shape({}).isRequired,
 	store: PropTypes.shape({}).isRequired
 }
 export default LeadService

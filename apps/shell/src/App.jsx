@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { Checkpoints, opptyServicePrefix, leadServicePrefix } from 'commons/Utils';
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from 'commons/Slices';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Layout from './layout';
 
 const LeadServiceLazy = lazy(() => import('./adapter/lead'));
@@ -12,26 +14,31 @@ const OpportunityServiceLazy = lazy(() =>
 	import('./adapter/opportunity')
 );
 const LoginLazy = lazy(() => import('./components/Login'))
+
+const client = new QueryClient();
 const history = createBrowserHistory();
 const store = configureStore({ reducer: rootReducer });
 
 const App = () => (
-	<Provider store={store}>
-		<Router history={history}>
-			<Layout>
-				<Suspense fallback={<div>loading...</div>}>
-					<Switch>
-						<Route path={leadServicePrefix}>
-							<LeadServiceLazy store={store} />
-						</Route>
-						<Route path={opptyServicePrefix}>
-							<OpportunityServiceLazy store={store} />
-						</Route>
-						<Route path={Checkpoints.home} component={LoginLazy}/>
-					</Switch>
-				</Suspense>
-			</Layout>
-		</Router>
-	</Provider>
+	<QueryClientProvider client={client}>
+		<Provider store={store}>
+			<Router history={history}>
+				<Layout>
+					<Suspense fallback={<div>loading...</div>}>
+						<Switch>
+							<Route path={leadServicePrefix}>
+								<LeadServiceLazy store={store} client={client} />
+							</Route>
+							<Route path={opptyServicePrefix}>
+								<OpportunityServiceLazy store={store} client={client} />
+							</Route>
+							<Route path={Checkpoints.home} component={LoginLazy}/>
+						</Switch>
+					</Suspense>
+				</Layout>
+			</Router>
+		</Provider>
+		<ReactQueryDevtools initialIsOpen={false} />
+	</QueryClientProvider>
 );
 export default App;

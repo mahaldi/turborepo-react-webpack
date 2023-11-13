@@ -1,21 +1,15 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Button } from 'commons/Components';
 import { Checkpoints } from 'commons/Utils';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchComment, commentSelector } from 'commons/Slices';
+import { useGetDetailComment } from 'commons/Hooks';
 import PropTypes from 'prop-types';
-import {get} from 'lodash'
+import { get } from 'lodash'
 
 const DetailLead = (props) => {
-	const {history, match} = props
-	const id = get(match, 'params.id')
-	const dispatch = useDispatch()
-	const {loading: loadingComment, comment: commentDetail} = useSelector(commentSelector)
+	const { history, match } = props;
+	const id = get(match, 'params.id');
 
-	useEffect(() => {
-		if(id)
-			dispatch(fetchComment(id))
-	}, [])
+	const { data: commentDetail, isLoading: loadingComment} = useGetDetailComment(id);
 
 	const directEdit = () => {
 		history.push({

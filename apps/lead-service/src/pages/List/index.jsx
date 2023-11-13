@@ -1,29 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {Button} from 'commons/Components'
+import React, { useState } from "react";
+import { Button } from 'commons/Components'
 import PropTypes from 'prop-types';
 import { Checkpoints } from 'commons/Utils';
-import { fetchComments, commentsSelector } from 'commons/Slices';
-import { useDispatch, useSelector } from 'react-redux';
+import { useGetComments } from 'commons/Hooks';
 import { Link } from "react-router-dom";
 
 const Landing = () => {
-
-	const dispatch = useDispatch();
 	const [page, setPage] = useState(0)
 
-	const {loading: loadingComments, comments: commentList = []} = useSelector(commentsSelector)
-
-	useEffect(() => {
-		dispatch(fetchComments({start: page}))
-	}, [])
+	const { data: commentList, isLoading: loadingComments} = useGetComments({ start: page, limit: 5 });
 
 	const handlePage = (isNext) => {
 		const nextPage = isNext ? page + 1 : page - 1
-		dispatch(fetchComments({
-			start: nextPage
-		}))
 		setPage(nextPage)
 	};
+
   return (
     <div>
 			<h1>Lead List Page</h1>
