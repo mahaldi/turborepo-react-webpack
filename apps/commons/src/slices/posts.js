@@ -36,7 +36,9 @@ export const fetchPosts = ({start = 0, limit = 10}) => async (dispatch) => {
 	try {
 		const {data} = await api.get(`/posts?_start=${start}&_limit=${limit}`)
 		dispatch(getPostsSuccess(data))
+		return data
 	} catch (error) {
 		dispatch(getPostsFailure())
+		return error
 	}
 }
