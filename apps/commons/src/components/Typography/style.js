@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
+import {colors} from '../../styles/theme'
 
 const style = css`
   ${({ display }) => display && `display: ${display};`}
   ${({ align }) => align && `text-align: ${align};`}
-  ${({ color, theme }) => color && `color: ${theme[color] || color};`}
+  ${({ color }) => color && `color: ${colors[color] || color};`}
   ${({ letterSpacing }) => letterSpacing && `letter-spacing: ${letterSpacing};`}
   ${({ lineHeight }) => lineHeight && `line-height: ${lineHeight};`}
   ${({ size }) => size && `font-size: ${size};`}
