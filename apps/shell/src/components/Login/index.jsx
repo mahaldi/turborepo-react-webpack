@@ -9,7 +9,7 @@ const LoginPage = ({history}) => {
 	const dispatch = useDispatch()
 
 	const handleSubmit = () => {
-		dispatch(fetchComments(1)).then(res => {
+		dispatch(fetchComments({})).then(res => {
 			if(res) {
 				localStorage.setItem('identity', res)
 				history.push(Checkpoints.opptyList)

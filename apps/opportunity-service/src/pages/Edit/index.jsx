@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, {useEffect} from 'react';
-import { Button, Input } from 'commons/Components';
+import { Button, Input, Form } from 'commons/Components';
 import { Checkpoints } from 'commons/Utils';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPost, postSelector } from 'commons/Slices';
+import { fetchPost, postSelector, fetchPosts } from 'commons/Slices';
 import PropTypes from 'prop-types';
 import {get} from 'lodash'
 import { useForm } from 'react-hook-form'
@@ -27,20 +27,22 @@ const EditOppty = (props) => {
 
 	const onSubmit = (data) => {
 		if(data) {
-			dispatch(fetchPost(id)).then(res => {
+			return dispatch(fetchPosts({})).then(res => {
 				if(res)
 					history.push({
 						pathname: Checkpoints.opptyList
 					})
 			})
 		}
+		return null
 	}
+
 	return (
 		<div>
 			<h1>Page Edit oppty</h1>
 			{
 				loadingPost ? <h1>Loading</h1> : <div>
-					<form onSubmit={handleSubmit(onSubmit)}>
+					<Form onSubmit={handleSubmit(onSubmit)}>
 						<h3>Title</h3>
 						<Input
 							register={register}
@@ -52,8 +54,8 @@ const EditOppty = (props) => {
 						/>
 						<h5>body</h5>
 						<Input register={register} name="body" />
-						<Button type="submit" onClick={handleSubmit}>Submit</Button>
-					</form>
+						<Button type="submit">Submit</Button>
+					</Form>
 				</div>
 			}
 		</div>
