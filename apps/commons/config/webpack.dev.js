@@ -20,7 +20,7 @@ const devConfig = {
 				'./Utils': './src/utils',
 				'./Context': './src/context.jsx',
 				'./Slices': './src/slices/index',
-				'./Styles': './src/styles/index.scss',
+				'./Theme': './src/styles/theme',
 				'./Hooks': './src/hooks/index',
 
 			},

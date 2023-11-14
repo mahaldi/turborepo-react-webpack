@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../../styles/theme'
 
 export const Wrapper = styled.div(({ visible, position, zIndex }) => ({
   minHeight: '100vh',
@@ -33,5 +34,5 @@ export const PopupContainer = styled.div`
   align-items: center;
   max-height: ${({ maxHeight }) => maxHeight};
   overflow: ${({ overflow }) => overflow};
-	background-color: white;
+	background-color: ${colors.white01};
 `

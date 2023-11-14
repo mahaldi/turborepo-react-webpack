@@ -2,9 +2,10 @@ import React from 'react';
 import {Checkpoints} from 'commons/Utils'
 import { useHistory } from "react-router-dom";
 import {Button} from 'commons/Components'
-import classes from './sidebar.scss'
+import { SidebarWrapper } from './style'
 
 const Sidebar = () => {
+
 	const history = useHistory()
 	const handleLogout = () => {
 		const isHasIdentity = localStorage.getItem('identity')
@@ -13,8 +14,9 @@ const Sidebar = () => {
 			history.push(Checkpoints.home)
 		}
 	}
+
 	return (
-		<div className={classes.sidebar}>
+		<SidebarWrapper>
 			<ul>
 				<li>
 					<Button history={history} variant="link" to={Checkpoints.opptyList}>Oppty Service</Button>
@@ -26,7 +28,7 @@ const Sidebar = () => {
 					<Button variant="link" onClick={handleLogout}>Logout</Button>
 				</li>
 			</ul>
-		</div>
+		</SidebarWrapper>
 	)
 }
 
