@@ -22,7 +22,7 @@ const devConfig = {
 				'./Slices': './src/slices/index',
 				'./Theme': './src/styles/theme',
 				'./Hooks': './src/hooks/index',
-
+				'./Assets': './src/assets/index'
 			},
 			shared: packageJson.dependencies
 		})
