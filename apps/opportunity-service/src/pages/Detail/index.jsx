@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { Button } from 'commons/Components';
+import React, {useEffect, useState} from 'react';
+import { Button, Modal } from 'commons/Components';
 import { Checkpoints } from 'commons/Utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPost, postSelector } from 'commons/Slices';
@@ -8,6 +8,7 @@ import {get} from 'lodash'
 
 const Detail = (props) => {
 	const {history, match} = props
+	const [openModal, setOpenModal] = useState(false)
 	const id = get(match, 'params.id')
 
 	const dispatch = useDispatch()
@@ -34,7 +35,11 @@ const Detail = (props) => {
 					<p>{postDetail.body}</p>
 				</div>
 			}
+			<Button variant="link" onClick={() => setOpenModal(true)}>Open Modal</Button>
 			<Button onClick={directEdit}>Edit Detail oppty</Button>
+			<Modal open={openModal} onClose={() => setOpenModal(false)}>
+				Modal children here,,,,
+			</Modal>
 		</div>
 	)
 }
